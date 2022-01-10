@@ -1,16 +1,21 @@
-import { useState } from "react/cjs/react.development";
+import { useEffect } from "react";
+import { useState, useRef } from "react/cjs/react.development";
 import ScreenPanel from './ScreenPanel';
 
 const Verification = (props) => {
 
+    const [isError, setError] = useState(false);
+
     const [otpList, setOTPList] = useState([
-        { key: 0, value: null },
-        { key: 1, value: null },
-        { key: 2, value: null },
-        { key: 3, value: null }
+        { key: 0, value: null, ref: useRef() },
+        { key: 1, value: null, ref: useRef() },
+        { key: 2, value: null, ref: useRef() },
+        { key: 3, value: null , ref: useRef() }
     ]);
 
-    const [isError, setError] = useState(false);
+    useEffect(()=>{
+        otpList[0].ref.current.focus();
+    },[])
 
     /**
      * onChange handles OTP data received from user
@@ -23,6 +28,7 @@ const Verification = (props) => {
         let dataArray = [...otpList];
         dataArray[index].value = event.target.value;
         setOTPList(dataArray, target);
+        otpList[index + 1].ref.current.focus();
     }
 
     /**
@@ -41,7 +47,6 @@ const Verification = (props) => {
         } else {
             setError(true)
         }
-
     }
 
 
@@ -56,8 +61,8 @@ const Verification = (props) => {
                                 {isError ? <h4 className="required">Please enter OTP received in {props.allValues.number}</h4> : <h4>Please enter OTP received in {props.allValues.number}</h4>}
                             </div>
                             <div class="userInput">
-                                {otpList.map(function (element, index) {
-                                    return <input className="otp_input" type="text" maxlength="1" value={element.value} onChange={(event) => onChange(event, 'otpList', index)} />
+                                {otpList.map((element, index) => {
+                                    return <input className="otp_input" ref={element.ref} type="text" maxlength="1" value={element.value} onChange={(event) => onChange(event, 'otpList', index)} />
                                 })}
                             </div>
                             <div class="button_align">

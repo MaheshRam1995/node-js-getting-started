@@ -23,7 +23,7 @@ const Interests = (props) => {
                             <div class="button_align">
                             {props.allValues.initial_hobby === 0 ? <></> : <h4 className="required">Please select your hobby</h4>}
                             </div>
-                            <ul style={{ maxWidth: '350px' }}>
+                            <ul style={{ maxWidth: '193px' }}>
                                 {props.allValues.hobbiesList.map(element => {
                                     return <li value={element.key} onClick={(event) => onClick(event, 'hobbiesList')} className={element.selected ? "checked" : ""}>{element.value}</li>
                                 })}

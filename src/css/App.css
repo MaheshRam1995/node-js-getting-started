@@ -22,7 +22,7 @@
 
 /* Set all odd list items to a different color*/
 .inboxStyle > ul li:nth-child(odd) {
-  background: yellowgreen;
+  background: bisque;
 }
 
 /* Darker background-color on hover */
@@ -34,6 +34,7 @@
 .inboxStyle >  ul li.checked {
   background: #888;
   color: #fff;
+  border: 1px solid white;
 }
 
 /* Add a "checked" mark when clicked on */
@@ -224,7 +225,6 @@ ul.breadcrumb {
 
 .screen_stepper {			
 	position: relative;	
-	background: limegreen;
 }
 
 .screen__content_stepper {
